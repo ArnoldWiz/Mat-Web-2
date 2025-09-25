@@ -1,0 +1,40 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'app/index.css' %}" />
+
+<header>
+  <h1>REGISTRO DE TAREAS</h1>
+</header>
+<body>
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>Fecha de entrega</th>
+        <th>Prioridad</th>
+        <th>Archivo</th>
+        <th>Acciones</th>
+      </tr>
+      {% for tarea in tareas %}
+        <tr>
+          <td>{{ tarea.nombre }}</td>
+          <td>{{ tarea.descripcion }}</td>
+          <td>{{ tarea.fecha_de_entrega }}</td>
+          <td>{{ tarea.prioridad }}</td>
+          <td>{{ tarea.archivo }}</td>
+          {% if not tarea.archivo %}
+            <td>
+              <button onclick="location.href='archivos/{{ tarea.id }}'">Subir archivos</button>
+            </td>
+          {% else %}
+            <td>
+              <button onclick="location.href='archivos/{{ tarea.id }}'">Eliminar archivos</button>
+            </td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+    </table>
+</body>
+<footer>
+  <p>Footer content here</p>
+</footer>
