@@ -1,0 +1,19 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'app/index.css' %}" />
+
+<header>
+    <h2>Responder a: {{ tarea.nombre }}</h2>
+</header>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <!-- Input adicional para aceptar varios archivos -->
+  <p>
+    <label for="id_archivos">Archivos adicionales (puedes seleccionar varios):</label><br>
+    <input type="file" name="archivos" id="id_archivos" multiple>
+  </p>
+  <button type="submit">Enviar respuesta</button>
+</form>
+
+<a href="{% url 'lista_tareas' %}">Volver</a>
