@@ -1,0 +1,41 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'app/index.css' %}" />
+
+<header>
+    <h2>Respuestas para: {{ tarea.nombre }}</h2>
+</header>
+
+<table>
+  <tr>
+    <th>Nombre del Alumno</th>
+    <th>Descripción</th>
+    <th>Archivos</th>
+  </tr>
+  {% for respuesta in respuestas %}
+  <tr>
+    <td>{{ respuesta.nombre_alumno }}</td>
+    <td>{{ respuesta.descripcion }}</td>
+    <td>
+      {% if respuesta.archivo %}
+        <div><a href="{{ respuesta.archivo.url }}" target="_blank">{{ respuesta.archivo.name|cut:"respuestas/" }}</a></div>
+      {% endif %}
+
+      {% if respuesta.archivos_adicionales.all %}
+        <ul>
+          {% for archivo in respuesta.archivos_adicionales.all %}
+            <li>
+              <a href="{{ archivo.archivo.url }}" target="_blank">{{ archivo.nombre_original }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td colspan="3">No hay respuestas aún.</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<a href="{% url 'lista_tareas' %}">Volver</a>
