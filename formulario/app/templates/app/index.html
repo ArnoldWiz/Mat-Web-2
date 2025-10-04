@@ -11,7 +11,6 @@
       <th>Descripcion</th>
       <th>Fecha de entrega</th>
       <th>Prioridad</th>
-      <th>Archivo</th>
       <th>Acciones</th>
     </tr>
     {% for tarea in tareas %}
@@ -22,7 +21,6 @@
         <td>{{ tarea.descripcion }}</td>
         <td>{{ tarea.fecha_de_entrega }}</td>
         <td>{{ tarea.prioridad }}</td>
-        <td>{{ tarea.archivo }}</td>
         <td>
           <button onclick="location.href='{% url 'responder_tarea' tarea.id %}'">Responder</button>
         </td>
