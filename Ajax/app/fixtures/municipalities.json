@@ -1,0 +1,114 @@
+[
+  {
+    "model": "app.municipality",
+    "pk": 1,
+    "fields": {
+      "state": 1, 
+      "name": "Aguascalientes"
+    }
+  },
+  {
+    "model": "app.municipality",
+    "pk": 2,
+    "fields": {
+      "state": 1, 
+      "name": "Asientos"
+    }
+  },
+  {
+    "model": "app.municipality",
+    "pk": 3,
+    "fields": {
+      "state": 2, 
+      "name": "Ensenada"
+    }
+  },
+  {
+    "model": "app.municipality",
+    "pk": 4,
+    "fields": {
+      "state": 2, 
+      "name": "Mexicali"
+    }
+  },
+  {
+    "model": "app.municipality",
+    "pk": 5,
+    "fields": {
+      "state": 3, 
+      "name": "La Paz"
+    }
+  },
+  {
+    "model": "app.municipality",
+    "pk": 6,
+    "fields": {
+      "state": 3, 
+      "name": "Los Cabos"
+    }
+  },
+  {
+    "model": "app.municipality",
+    "pk": 7,
+    "fields": {
+      "state": 4, 
+      "name": "Campeche"
+    }
+  },
+  {
+    "model": "app.municipality",
+    "pk": 8,
+    "fields": {
+      "state": 4, 
+      "name": "Carmen"
+    }
+  },
+  {
+    "model": "app.municipality",
+    "pk": 9,
+    "fields": {
+      "state": 5, 
+      "name": "Tuxtla Gutiérrez"
+    }
+  },
+  {
+    "model": "app.municipality",
+    "pk": 10,
+    "fields": {
+      "state": 5, 
+      "name": "San Cristóbal de las Casas"
+    }
+  },
+  {
+    "model": "app.municipality",
+    "pk": 11,
+    "fields": {
+      "state": 6, 
+      "name": "Chihuahua"
+    }
+  },
+  {
+    "model": "app.municipality",
+    "pk": 12,
+    "fields": {
+      "state": 6, 
+      "name": "Juárez"
+    }
+  },
+  {
+    "model": "app.municipality",
+    "pk": 13,
+    "fields": {
+      "state": 7, 
+      "name": "Álvaro Obregón"
+    }
+  },
+  {
+    "model": "app.municipality",
+    "pk": 14,
+    "fields": {
+      "state": 7, 
+      "name": "Coyoacán"
+    }
+  }
+]

@@ -1,0 +1,114 @@
+[
+  {
+    "model": "app.state",
+    "pk": 1,
+    "fields": {
+      "name": "Aguascalientes"
+    }
+  },
+  {
+    "model": "app.state",
+    "pk": 2,
+    "fields": {
+      "name": "Baja California"
+    }
+  },
+  {
+    "model": "app.state",
+    "pk": 3,
+    "fields": {
+      "name": "Baja California Sur"
+    }
+  },
+  {
+    "model": "app.state",
+    "pk": 4,
+    "fields": {
+      "name": "Campeche"
+    }
+  },
+  {
+    "model": "app.state",
+    "pk": 5,
+    "fields": {
+      "name": "Chiapas"
+    }
+  },
+  {
+    "model": "app.state",
+    "pk": 6,
+    "fields": {
+      "name": "Chihuahua"
+    }
+  },
+  {
+    "model": "app.state",
+    "pk": 7,
+    "fields": {
+      "name": "Ciudad de México"
+    }
+  },
+  {
+    "model": "app.state",
+    "pk": 8,
+    "fields": {
+      "name": "Coahuila"
+    }
+  },
+  {
+    "model": "app.state",
+    "pk": 9,
+    "fields": {
+      "name": "Colima"
+    }
+  },
+  {
+    "model": "app.state",
+    "pk": 10,
+    "fields": {
+      "name": "Durango"
+    }
+  },
+  {
+    "model": "app.state",
+    "pk": 11,
+    "fields": {
+      "name": "Guanajuato"
+    }
+  },
+  {
+    "model": "app.state",
+    "pk": 12,
+    "fields": {
+      "name": "Guerrero"
+    }
+  },
+  {
+    "model": "app.state",
+    "pk": 13,
+    "fields": {
+      "name": "Hidalgo"
+    }
+  },
+  {
+    "model": "app.state",
+    "pk": 14,
+    "fields": {
+      "name": "Jalisco"
+    }
+  },
+  {
+    "model": "app.state",
+    "pk": 15,
+    "fields": {
+      "name": "México"
+    }
+  },
+  {
+    "model": "app.state",
+    "pk": 16,
+    "fields": {
+      "name": "Michoacán"
+    }
+  }
+]
