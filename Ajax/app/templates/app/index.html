@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Django | AJAX Dinámico</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            background-color: #fff;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ubicación (AJAX)</h1>
+
+        <div class="form-group">
+            <label for="id_state">Estado:</label>
+            <select id="id_state" name="state">
+                <option value="">--- Seleccione un Estado ---</option>
+                {% for state in states %}
+                    <option value="{{ state.id }}">{{ state.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="id_municipality">Municipio:</label>
+            <select id="id_municipality" name="municipality" disabled>
+                <option value="">--- Seleccione un Municipio ---</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#id_state").change(function () {
+                var stateId = $(this).val();
+                var municipalitySelect = $("#id_municipality");
+
+                municipalitySelect.html('<option value="">Cargando...</option>').prop('disabled', true);
+
+                if (stateId) {
+                    $.ajax({
+                        url: "{% url 'ajax_load_municipalities' %}",
+                        data: {
+                            'state_id': stateId
+                        },
+                        dataType: 'json',
+                        success: function (data) {
+                            municipalitySelect.html('<option value="">--- Seleccione un Municipio ---</option>');
+                            
+                            $.each(data, function (key, value) {
+                                municipalitySelect.append('<option value="' + value.id + '">' + value.name + '</option>');
+                            });
+
+                            municipalitySelect.prop('disabled', false);
+                        },
+                        error: function () {
+                            municipalitySelect.html('<option value="">Error de carga</option>').prop('disabled', true);
+                        }
+                    });
+                } else {
+                    municipalitySelect.html('<option value="">--- Seleccione un Municipio ---</option>').prop('disabled', true);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
