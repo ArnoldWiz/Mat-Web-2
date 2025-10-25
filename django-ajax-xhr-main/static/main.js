@@ -42,13 +42,13 @@ async function getAllTodos(url) {
     });
   } catch (error) {
     console.error("Error al obtener TODOs:", error);
-    alert("Error al cargar los TODOs. Por favor, intenta de nuevo.");
+    alert("Error al cargar los TODOs");
   }
 }
 
 
 
-  const operationGetAllTodos = async (url) => {
+const operationGetAllTodos = async (url) => {
        r = await fetch(url, {
         headers: {
           "X-Requested-With": "XMLHttpRequest",
@@ -73,20 +73,31 @@ async function getAllTodos(url) {
 };
 
 
-function addTodo(url, payload) {
-  fetch(url, {
-    method: "POST",
-    credentials: "same-origin",
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-      // "X-CSRFToken": getCookie("csrftoken"),
-    },
-    body: JSON.stringify({payload: payload})
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-  });
+async function addTodo(url, payload) {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRFToken": getCookie("csrftoken"),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({payload: payload})
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("TODO creado exitosamente", data);
+    return data;
+  } catch (error) {
+    console.error("Error al agregar TODO", error);
+    alert("Error al crear el TODO");
+    throw error;
+  }
 }
 
 
