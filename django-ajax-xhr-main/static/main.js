@@ -101,20 +101,31 @@ async function addTodo(url, payload) {
 }
 
 
-function updateTodo(url, payload) {
-  fetch(url, {
-    method: "PUT",
-    credentials: "same-origin",
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-      "X-CSRFToken": getCookie("csrftoken"),
-    },
-    body: JSON.stringify({payload: payload})
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-  });
+async function updateTodo(url, payload) {
+  try {
+    const response = await fetch(url, {
+      method: "PUT",
+      credentials: "same-origin",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRFToken": getCookie("csrftoken"),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({payload: payload})
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("TODO actualizado exitosamente:", data);
+    return data;
+  } catch (error) {
+    console.error("Error al actualizar TODO", error);
+    alert("Error al actualizar el TODO");
+    throw error;
+  }
 }
 
 
