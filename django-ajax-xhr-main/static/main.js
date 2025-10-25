@@ -16,27 +16,34 @@ function getCookie(name) {
 }
 
 
-function getAllTodos(url) {
-  
-  fetch(url, {
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
+async function getAllTodos(url) {
+  try {
+    const response = await fetch(url, {
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-  })
-  .then(response => response.json())
-  .then(data => {
+
+    const data = await response.json();
     const todoList = document.getElementById("todoList");
     todoList.innerHTML = "";
 
-    (data.context).forEach(todo => {
+    data.context.forEach(todo => {
       const todoHTMLElement = `
         <li>
           <p>Task: ${todo.task}</p>
           <p>Completed?: ${todo.completed}</p>
-        </li>`
-        todoList.innerHTML += todoHTMLElement;
+        </li>`;
+      todoList.innerHTML += todoHTMLElement;
     });
-  });
+  } catch (error) {
+    console.error("Error al obtener TODOs:", error);
+    alert("Error al cargar los TODOs. Por favor, intenta de nuevo.");
+  }
 }
 
 
