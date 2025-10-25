@@ -41,7 +41,7 @@ async function getAllTodos(url) {
       todoList.innerHTML += todoHTMLElement;
     });
   } catch (error) {
-    console.error("Error al obtener TODOs:", error);
+    console.error("Error al obtener TODOs", error);
     alert("Error al cargar los TODOs");
   }
 }
@@ -119,7 +119,7 @@ async function updateTodo(url, payload) {
     }
 
     const data = await response.json();
-    console.log("TODO actualizado exitosamente:", data);
+    console.log("TODO actualizado exitosamente", data);
     return data;
   } catch (error) {
     console.error("Error al actualizar TODO", error);
@@ -129,17 +129,27 @@ async function updateTodo(url, payload) {
 }
 
 
-function deleteTodo(url) {
-  fetch(url, {
-    method: "DELETE",
-    credentials: "same-origin",
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-      "X-CSRFToken": getCookie("csrftoken"),
+async function deleteTodo(url) {
+  try {
+    const response = await fetch(url, {
+      method: "DELETE",
+      credentials: "same-origin",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRFToken": getCookie("csrftoken"),
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-  });
+
+    const data = await response.json();
+    console.log("TODO eliminado exitosamente", data);
+    return data;
+  } catch (error) {
+    console.error("Error al eliminar TODO", error);
+    alert("Error al eliminar el TODO");
+    throw error;
+  }
 }
